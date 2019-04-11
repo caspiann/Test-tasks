@@ -1,0 +1,76 @@
+a {
+  text-decoration: none;
+  display: inline-block;
+  color: #737373;
+}
+
+.container {
+  color: #737373;
+  width: 320px;
+  height: 420px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.container_arrow {
+  font-size: 20px;
+  color: #ccc;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 15px;
+  align-items: center;
+  background-color: #3399cc;
+  height: 45px;
+  color: #ffffff;
+}
+
+.tree-node {
+  overflow-y: hidden;
+  line-height: 25px;
+}
+
+.tree-node-children {
+  margin-left: 25px;
+}
+
+.tree-node-children-collapsed {
+  display: none;
+}
+
+.tree-node-leaf {
+  margin-left: 25px;
+}
+
+.tree-node div:first-child,
+.tree-node-children > div {
+  padding: 5px 0;
+}
+
+.tree-node-arrow {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.tree-node-arrow i:first-child {
+  margin-left: 20px;
+}
+
+.tree-node-arrow i {
+  margin-right: 12px;
+}
+
+.tree-view > .tree-node > div:first-child {
+  line-height: 30px;
+  border-left: 2px solid transparent;
+}
+
+.tree-view > .tree-node > div:first-child:hover {
+  background-color: #eee;
+  border-left: 2px solid #3399cc;
+}
