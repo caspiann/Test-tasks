@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section>
+      <header>Sum numbers in array</header>
+      <label for="array_length">
+        <p>Size</p>
+        <input type="text" id="array_length" />
+      </label>
+      <p class="error error_size"><sup>*</sup> Please print correct number</p>
+      <label for="array">
+        <p>Numbers</p>
+        <input type="text" id="array" />
+      </label>
+      <p class="error error_array">
+        <sup>*</sup>
+        Please print correct number array separated by backspace
+      </p>
+      <div class="buttons">
+        <button type="button" class="count_button">Count</button>
+        <button type="button" class="reset_button">Reset</button>
+      </div>
+      <p class="count_result">0</p>
+    </section>
+    <div class="rules">
+      <p><sup>*</sup> <b>Size</b> - print array length</p>
+      <p>
+        <sup>*</sup><b>Numbers</b>- print numbers for counting, separated by
+        backspace
+      </p>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
