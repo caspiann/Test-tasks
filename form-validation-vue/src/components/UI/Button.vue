@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <button type="submit" class="mainBlockStyle">{{ component }}</button>
   </div>
 </template>
@@ -9,7 +9,7 @@ export default {
   name: 'Button',
   data () {
     return {
-      component: 'Button'
+      component: 'Отправить'
     }
   }
 }

@@ -15,9 +15,12 @@ export default {
 
 <style lang="scss" scoped>
 p {
-  color: red;
+  margin: 0;
+  padding: 5px 0;
+  color: #fc3939;
   font-weight: bold;
   font-size: 16px;
   text-decoration: underline;
+  text-align: left;
 }
 </style>
