@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button type="submit">{{ component }}</button>
+    <button type="submit" class="mainBlockStyle">{{ component }}</button>
   </div>
 </template>
 
@@ -16,5 +16,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mainUiStyle';
+
+.mainBlockStyle {
+  width: 140px;
+  height: 50px;
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 700;
+}
 
 </style>

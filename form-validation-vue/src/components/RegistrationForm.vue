@@ -1,16 +1,16 @@
 <template>
   <div class="container">
       <Input/>
-      <Button/>
-      <Checkbox/>
       <Select/>
-    <Error/>
+      <Checkbox/>
+      <InfoMessage/>
+      <Button/>
   </div>
 </template>
 
 <script>
 import Checkbox from '@/components/UI/Checkbox';
-import Error from '@/components/UI/Error';
+import InfoMessage from '@/components/UI/InfoMessage';
 import Input from '@/components/UI/Input';
 import Button from '@/components/UI/Button';
 import Select from '@/components/UI/Select';
@@ -19,8 +19,8 @@ export default {
   mixins: [validation],
   name: 'App',
   components: {
-    Error,
     Input,
+    InfoMessage,
     Button,
     Checkbox,
     Select
@@ -35,6 +35,7 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  color: #ccc;  
+  width: 80vw;
+  padding-top: 20px;
 }
 </style>

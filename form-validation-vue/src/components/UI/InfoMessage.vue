@@ -14,7 +14,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-p{
+p {
   color: red;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: underline;
 }
 </style>

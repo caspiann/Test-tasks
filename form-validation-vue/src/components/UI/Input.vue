@@ -18,7 +18,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../assets/mainUiStyle';
 .container {
-  color: #ccc;
+  input {
+    box-sizing: border-box;
+    height: 60px;
+    cursor: inherit;
+    padding-left: 5px;
+    font-size: 40px;
+    font-weight: 700;
+  }
 }
 </style>
