@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <label for="select">{{ title }}<sup v-if="isRequired">*</sup></label>
-    <select name="" id="select" class="mainBlockStyle" v-bind:multiple="isMultiple">
+    <label :for="title.dataName">{{ title.name }}<sup v-if="isRequired">*</sup></label>
+    <select name="" :id="title.dataName" class="mainBlockStyle" :multiple="isMultiple" v-model="inputValue.value" @change="getData">
       <option v-for="(w, index) of options" :key="index" :value="w.option">{{ w.option }}</option>
     </select>
     <slot name="error"></slot>
@@ -9,18 +9,23 @@
 </template>
 
 <script>
+import getData from '@/mixins/getData';
 export default {
   name: 'Select',
   props: ['title', 'options', 'isMultiple', 'isRequired'],
+  mixins: [getData],
   data() {
     return {
-      component: 'Item1',
+      inputValue: {
+        value: this.isMultiple ? [] : '',
+        dataValue: this.title.dataName,
+      },
     };
   },
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 @import '../../assets/mainUiStyle';
 
 
@@ -55,6 +60,22 @@ export default {
     color: #000;
   }
 
+}
+
+@media (max-width: 768px) {
+  .container {
+    select{
+      width: 70%;
+    }
+  }
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+  .container {
+    select{
+      width: 100%;
+    }
+  }
 }
 
 </style>

@@ -1,17 +1,22 @@
 <template>
   <div class="container">
-    <input type="checkbox" id="checkbox"/>
-    <label for="checkbox">{{title}}</label>
+    <input type="checkbox" :id="title.dataName" v-model="inputValue.value" @change="getData"/>
+    <label :for="title.dataName">{{title.name}}</label>
   </div>
 </template>
 
 <script>
+import getData from '@/mixins/getData';
 export default {
   name: 'checkbox',
   props: ['title'],
+  mixins: [getData],
   data () {
     return {
-      component: 'checkbox'
+      inputValue: {
+        value: false,
+        dataValue: this.title.dataName,
+      },
     }
   }
 }
@@ -41,6 +46,7 @@ export default {
     display: inline-flex;
     align-items: center;
     user-select: none;
+    padding-top: 15px;
 
     font-weight: bold;
     font-size: 20px;

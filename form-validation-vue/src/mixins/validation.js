@@ -1,6 +1,22 @@
-import {validationMixin} from 'vuelidate';
-
 export default {
-	mixins: [validationMixin],
-	validations: {},
+	validations: {
+		mainData: {
+			name: {
+				simpleValidator(value){
+					return value.length > 3
+				}
+			},
+			secondName: '',
+			birthday: '',
+			phone: '',
+			clients: [],
+		},
+		address: {
+			city: '',
+		},
+		document: {
+			documentType: '',
+			gettingDate: '',
+		},
+	},
 };

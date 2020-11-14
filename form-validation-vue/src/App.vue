@@ -42,6 +42,18 @@ export default {
   display: flex;
   justify-content: center;
   box-sizing: border-box;
-  width: 50vw;
+  width: 70vw;
 }
+@media (max-width: 768px) {
+  #app{
+    width: 90vw;
+  }
+}
+
+@media (max-width: 480px) and (min-width: 320px) {
+  #app{
+    width: 90vw;
+  }
+}
+
 </style>

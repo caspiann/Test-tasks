@@ -1,19 +1,24 @@
 <template>
   <div class="container">
-    <label for="input">{{ title }}<sup v-if="isRequired">*</sup></label>
-    <input :type="type" id="input" :class=errorClass()>
+    <label for="title.dataName">{{ title.name }}<sup v-if="isRequired">*</sup></label>
+    <input :type="type" id="title.dataName" :class=errorClass() v-model.trim="inputValue.value" @change="getData">
     <slot name="error"></slot>
   </div>
 </template>
 
 <script>
+import getData from '@/mixins/getData';
 
 export default {
   name: 'Input',
   props: ['title', 'type', 'isError', 'isRequired'],
+  mixins: [getData],
   data() {
     return {
-      value: '',
+      inputValue: {
+        value: '',
+        dataValue: this.title.dataName,
+      },
     };
   },
   methods: {
@@ -50,4 +55,5 @@ export default {
     color: #000;
   }
 }
+
 </style>
