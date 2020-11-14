@@ -1,12 +1,13 @@
 <template>
   <div class="container">
-    <button type="submit" class="mainBlockStyle">{{ component }}</button>
+    <button type="submit" class="mainBlockStyle">{{ title }}</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Button',
+  props: ['title'],
   data () {
     return {
       component: 'Отправить'

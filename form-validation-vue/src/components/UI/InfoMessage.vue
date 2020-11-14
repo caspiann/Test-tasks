@@ -1,15 +1,11 @@
 <template>
-  <p>{{error}}</p>
+  <p :class="isSuccess ? 'success' : ''">{{message}}</p>
 </template>
 
 <script>
 export default {
   name: 'Error',
-  data () {
-    return {
-      error: 'Error message!'
-    }
-  }
+  props:['message', 'isSuccess']
 }
 </script>
 
@@ -22,5 +18,10 @@ p {
   font-size: 16px;
   text-decoration: underline;
   text-align: left;
+}
+
+.success{
+  color: #029100;
+
 }
 </style>

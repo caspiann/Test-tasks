@@ -8,93 +8,118 @@
     <form>
       <fieldset>
         <legend>Основные данные</legend>
-        <Input
-            title="Фамилия"
-            type="text"
-        />
-        <Input
-            title="Имя"
-            type="text"
-        />
-        <Input
+
+        <InputElement type="text" title="Фамилия" is-error="true" is-required="true">
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </InputElement>
+
+        <InputElement type="text" title="Имя" is-error="true" is-required="true">
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </InputElement>
+
+        <InputElement
             title="Отчество"
             type="text"
         />
-        <Input
-            title="Дата рождения"
-            type="date"
-        />
-        <Input
-            title="Номер телефона"
-            type="number"
-        />
-        <Input
+
+        <InputElement type="date" title="Дата рождения" is-error="true" is-required="true">
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </InputElement>
+
+        <InputElement type="number" title="Номер телефона" is-error="true" is-required="true">
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </InputElement>
+
+        <InputElement
             title="Пол"
             type="text"
         />
-          <Select
-              title="Группа клиентов"
-              :options="[{option: 'VIP'}, {option: 'Проблемные'}, {option:'ОМС'}]"
-          />
-          <Select
-              title="Лечащий врач"
-              :options="[{option: 'Иванов'}, {option: 'Захаров'}, {option:'Чернышева'}]"
-          />
-        <Checkbox title="Не отправлять СМС"/>
+        <Select
+            title="Группа клиентов"
+            :options="[{option: 'VIP'}, {option: 'Проблемные'}, {option:'ОМС'}]"
+            is-multiple="true"
+            is-required="true"
+        >
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </Select>
+        <Select
+            title="Лечащий врач"
+            :options="[{option: 'Иванов'}, {option: 'Захаров'}, {option:'Чернышева'}]"
+        />
+        <Checkbox title="Не отправлять СМС" />
       </fieldset>
-
       <fieldset>
         <legend>Адрес</legend>
-        <Input
+        <InputElement
             title="Индекс"
             type="number"
         />
-        <Input
+        <InputElement
             title="Страна"
             type="text"
         />
-        <Input
+        <InputElement
             title="Область"
             type="text"
         />
-        <Input
-            title="Город"
-            type="text"
-        />
-        <Input
+
+        <InputElement type="text" title="Город" is-error="true" is-required="true">
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </InputElement>
+
+        <InputElement
             title="Улица"
             type="text"
         />
-        <Input
+        <InputElement
             title="Дом"
             type="number"
         />
 
       </fieldset>
 
-      <fieldset >
+      <fieldset>
         <legend>Документы</legend>
         <Select
-        title="Тип документа"
-        :options="[{option: 'Паспорт'}, {option: 'Свидетельство о рождении'}, {option:'Вод. удостоверение'}]"
-        />
-        <Input
+            title="Тип документа"
+            :options="[{option: 'Паспорт'}, {option: 'Свидетельство о рождении'}, {option:'Вод. удостоверение'}]"
+            is-required="true"
+        >
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </Select>
+        <InputElement
             title="Серия"
             type="number"
         />
-        <Input
+        <InputElement
             title="Номер"
             type="number"
         />
-        <Input
+        <InputElement
             title="Кем выдан"
             type="text"
         />
-        <Input
-            title="Дата выдачи"
-            type="date"
-        />
-        <Button/>
+        <InputElement type="date" title="Дата выдачи" is-error="true" is-required="true">
+          <template #error>
+            <InfoMessage message="Обязательное поле" />
+          </template>
+        </InputElement>
+
+        <Button title="Отправить" />
       </fieldset>
 
     </form>
@@ -104,49 +129,81 @@
 
 <script>
 import Checkbox from '@/components/UI/Checkbox';
-import Input from '@/components/UI/Input';
+import InputElement from '@/components/UI/InputElement';
 import Button from '@/components/UI/Button';
 import Select from '@/components/UI/Select';
+import InfoMessage from '@/components/UI/InfoMessage';
 import validation from '@/mixins/validation';
+
 export default {
   mixins: [validation],
   name: 'App',
   components: {
-    Input,
+    InputElement,
     Button,
     Checkbox,
-    Select
+    Select,
+    InfoMessage,
   },
-  data () {
+  data() {
     return {
-      greeting: 'Hello'
-    }
-  }
-}
+      mainData: {
+        name: '',
+        secondName: '',
+        lastName: '',
+        birthday: '',
+        phone: '',
+        sex: '',
+        clients: [],
+        doctor: '',
+        isSendSMS: true,
+      },
+      address: {
+        index: '',
+        country: '',
+        region: '',
+        city: '',
+        street: '',
+        house: '',
+      },
+      document: {
+        documentType: '',
+        serialNumber: '',
+        number: '',
+        gettingPlace: '',
+        gettingDate: '',
+      },
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
 .container {
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-flow: column;
   margin: 25px 0;
   box-sizing: border-box;
-  .header{
+
+  .header {
     margin-bottom: 10px;
   }
-  fieldset{
+
+  fieldset {
     margin: 40px 0;
-    border: 3px solid #000000;
+    border: 3px solid #000;
     padding: 30px 50px;
     background: #ffff5d;
   }
-  legend{
+
+  legend {
     padding: 5px 20px;
     text-align: left;
     font-weight: bold;
     font-size: 20px;
-    border: 3px solid #000000;
+    border: 3px solid #000;
     background: #fff;
 
   }

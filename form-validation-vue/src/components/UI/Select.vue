@@ -1,22 +1,23 @@
 <template>
   <div class="container">
-    <label for="select">{{title}}</label>
-    <select name="" id="select" class="mainBlockStyle">
-        <option v-for="(w, index) of options" :key="index" :value="w.option">{{w.option}}</option>
+    <label for="select">{{ title }}<sup v-if="isRequired">*</sup></label>
+    <select name="" id="select" class="mainBlockStyle" v-bind:multiple="isMultiple">
+      <option v-for="(w, index) of options" :key="index" :value="w.option">{{ w.option }}</option>
     </select>
+    <slot name="error"></slot>
   </div>
 </template>
 
 <script>
 export default {
   name: 'Select',
-  props:['title', 'options'],
-  data () {
+  props: ['title', 'options', 'isMultiple', 'isRequired'],
+  data() {
     return {
-      component: 'Item1'
-    }
-  }
-}
+      component: 'Item1',
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -25,6 +26,15 @@ export default {
 
 .container {
   box-sizing: content-box;
+
+  .mainBlockStyle{
+    background: #fff;
+    &:hover,
+    &:active,
+    &:focus{
+      color: #000;
+    }
+  }
 
   select {
     width: 50%;
@@ -37,7 +47,7 @@ export default {
     font-weight: 700;
   }
 
-  label{
+  label {
     margin-bottom: 5px;
     font-size: 20px;
     font-weight: 700;
