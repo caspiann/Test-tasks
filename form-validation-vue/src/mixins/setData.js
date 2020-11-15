@@ -1,7 +1,7 @@
 export default {
 	methods: {
-		Value(data){
-			this.mainData[data.dataValue] = data.value;
-		}
-	}
-}
+		Value(data) {
+			this.form[data.dataValue] = data.value;
+		},
+	},
+};

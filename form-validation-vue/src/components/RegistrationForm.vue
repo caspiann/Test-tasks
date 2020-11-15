@@ -1,30 +1,27 @@
 <template>
   <div class="container">
-    <div class="header">
-      <h1>Новый клиент</h1>
-      <h3>Для регистрации нового клиента заполните форму.</h3>
-      <h5><sup>*</sup> Поле обязательное для заполнения.</h5>
-    </div>
-    <form>
+    <form @submit.prevent="onSubmit" v-if="!isValid">
+      <div class="header">
+        <h1>Новый клиент</h1>
+        <h3>Для регистрации нового клиента заполните форму.</h3>
+        <h5><sup>*</sup> Поле обязательное для заполнения.</h5>
+      </div>
       <fieldset>
         <legend>Основные данные</legend>
 
         <InputElement
-            type="text" :title="{name:'Фамилия', dataName:'secondName'}" is-error="true" is-required="true"
+            type="text"
+            :title="{name:'Фамилия', dataName:'secondName'}"
+            is-required="true"
             @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </InputElement>
+        />
 
         <InputElement
-            type="text" :title="{name:'Имя', dataName:'name'}" is-error="true" is-required="true" @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </InputElement>
+            type="text"
+            :title="{name:'Имя', dataName:'name'}"
+            is-required="true"
+            @_set="Value"
+        />
 
         <InputElement
             :title="{name:'Отчество', dataName:'lastName'}"
@@ -35,24 +32,16 @@
         <InputElement
             type="date"
             :title="{name:'Дата рождения', dataName:'birthday'}"
-            is-error="true" is-required="true"
+            is-required="true"
             @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </InputElement>
+        />
 
         <InputElement
             type="number"
             :title="{name:'Номер телефона', dataName:'phone'}"
-            is-error="true" is-required="true"
+            is-required="true"
             @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </InputElement>
+        />
 
         <InputElement
             :title="{name:'Пол', dataName:'sex'}"
@@ -80,6 +69,7 @@
             :title="{name:'Не отправлять СМС', dataName:'notSendSMS'}" @_set="Value"
         />
       </fieldset>
+
       <fieldset>
         <legend>Адрес</legend>
         <InputElement
@@ -87,11 +77,13 @@
             type="number"
             @_set="Value"
         />
+
         <InputElement
             :title="{name:'Страна', dataName:'country'}"
             type="text"
             @_set="Value"
         />
+
         <InputElement
             :title="{name:'Область', dataName:'region'}"
             type="text"
@@ -101,19 +93,16 @@
         <InputElement
             type="text"
             :title="{name:'Город', dataName:'city'}"
-            is-error="true" is-required="true"
+            is-required="true"
             @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </InputElement>
+        />
 
         <InputElement
             :title="{name:'Улица', dataName:'street'}"
             type="text"
             @_set="Value"
         />
+
         <InputElement
             :title="{name:'Дом', dataName:'house'}"
             type="number"
@@ -134,16 +123,19 @@
             <InfoMessage message="Обязательное поле" />
           </template>
         </Select>
+
         <InputElement
             :title="{name:'Серия', dataName:'serialNumber'}"
             type="number"
             @_set="Value"
         />
+
         <InputElement
             :title="{name:'Номер', dataName:'number'}"
             type="number"
             @_set="Value"
         />
+
         <InputElement
             :title="{name:'Кем выдан', dataName:'gettingPlace'}"
             type="text"
@@ -152,33 +144,29 @@
         <InputElement
             type="date"
             :title="{name:'Дата выдачи', dataName:'gettingDate'}"
-            is-error="true" is-required="true" @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </InputElement>
+            is-required="true" @_set="Value"
+        />
 
-        <Button title="Отправить" />
+        <Button title="Отправить" @click="onSubmit" />
+
       </fieldset>
 
     </form>
+    <InfoMessage message="Клиент успешно создан!" v-else />
 
   </div>
 </template>
 
 <script>
-import Checkbox from '@/components/UI/Checkbox';
-import InputElement from '@/components/UI/InputElement';
 import Button from '@/components/UI/Button';
-import Select from '@/components/UI/Select';
+import Checkbox from '@/components/UI/Checkbox';
 import InfoMessage from '@/components/UI/InfoMessage';
-import {validationMixin} from 'vuelidate';
-import validation from '@/mixins/validation';
+import InputElement from '@/components/UI/InputElement';
+import Select from '@/components/UI/Select';
 import setData from '@/mixins/setData';
 
 export default {
-  mixins: [validation, validationMixin, setData],
+  mixins: [setData],
   name: 'App',
   components: {
     InputElement,
@@ -189,35 +177,39 @@ export default {
   },
   data() {
     return {
-      mainData: {
-        'name': '',
-        'secondName': '',
-        'lastName': '',
-        'birthday': '',
-        'phone': '',
-        'sex': '',
+      isValid: false,
+      form: {
+        name: '',
+        secondName: '',
+        lastName: '',
+        birthday: '',
+        phone: '',
+        sex: '',
         clients: [],
         doctor: '',
         notSendSMS: true,
-      },
-      address: {
-        'index': '',
-        'country': '',
-        'region': '',
-        'city': '',
-        'street': '',
-        'house': '',
-      },
-      document: {
+        index: '',
+        country: '',
+        region: '',
+        city: '',
+        street: '',
+        house: '',
         documentType: '',
-        'serialNumber': '',
-        'number': '',
-        'gettingPlace': '',
-        'gettingDate': '',
+        serialNumber: '',
+        number: '',
+        gettingPlace: '',
+        gettingDate: '',
       },
     };
   },
-
+  methods: {
+    onSubmit() {
+      const requiredFields = ['name', 'secondName', 'phone', 'birthday', 'clients', 'city', 'documentType', 'gettingDate'];
+      this.isValid = requiredFields.every((item) => {
+        return this.form[item].length > 0;
+      });
+    },
+  },
 };
 </script>
 
@@ -272,6 +264,10 @@ export default {
     fieldset {
       margin: 10px 0;
       padding: 10px;
+    }
+
+    legend {
+      text-align: center;
     }
   }
 }

@@ -19,14 +19,6 @@ export default {
       isFormChecked: false
     }
   },
-  methods: {
-    checkForm() {
-      this.$v.form.$touch()
-      if (!this.$v.form.$error) {
-        this.isFormChecked = true;
-      }
-    }
-  }
 
 }
 </script>

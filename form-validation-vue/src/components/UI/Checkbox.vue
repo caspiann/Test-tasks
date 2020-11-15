@@ -1,25 +1,26 @@
 <template>
   <div class="container">
-    <input type="checkbox" :id="title.dataName" v-model="inputValue.value" @change="getData"/>
-    <label :for="title.dataName">{{title.name}}</label>
+    <input type="checkbox" :id="title.dataName" v-model="inputValue.value" @change="getData" />
+    <label :for="title.dataName">{{ title.name }}</label>
   </div>
 </template>
 
 <script>
 import getData from '@/mixins/getData';
+
 export default {
   name: 'checkbox',
   props: ['title'],
   mixins: [getData],
-  data () {
+  data() {
     return {
       inputValue: {
         value: false,
         dataValue: this.title.dataName,
       },
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -27,12 +28,13 @@ export default {
 
 .container {
   text-align: left;
+
   input {
     position: absolute;
     z-index: -1;
     opacity: 0;
 
-    &:checked+label:before{
+    &:checked + label:before {
       content: 'X';
       color: #fff;
       box-shadow: none;
@@ -67,14 +69,14 @@ export default {
       box-shadow: inset 2px 2px 0 0 #ffff3d, 4px 4px 0 0 #fff;
       transition: all 0.2s ease-in;
     }
-    &:hover:before{
+
+    &:hover:before {
       box-shadow: none;
       cursor: pointer;
       transition: all 0.2s ease-in;
     }
   }
 }
-
 
 
 </style>

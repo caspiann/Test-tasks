@@ -8,12 +8,12 @@
 export default {
   name: 'Button',
   props: ['title'],
-  data () {
+  data() {
     return {
-      component: 'Отправить'
-    }
-  }
-}
+      component: 'Отправить',
+    };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -25,6 +25,7 @@ export default {
   margin-top: 30px;
   font-size: 20px;
   font-weight: 700;
+
 }
 
 </style>

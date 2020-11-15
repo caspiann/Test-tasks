@@ -1,7 +1,7 @@
 export default {
 	methods: {
 		getData() {
-			this.$emit('_set', this.inputValue)
-		}
-	}
-}
+			this.$emit('_set', this.inputValue);
+		},
+	},
+};

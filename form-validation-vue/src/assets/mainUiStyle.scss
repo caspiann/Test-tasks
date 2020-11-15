@@ -1,9 +1,9 @@
 .mainBlockStyle,
 input {
-	border: 4px solid #000;
-	background-color: #fff;
-	box-shadow: inset 2px 2px 0 0 #ffff3d, 4px 4px 0 0 #fff;
-	transition: all 0.2s ease-in;
+  border: 4px solid #000;
+  background-color: #fff;
+  box-shadow: inset 2px 2px 0 0 #ffff3d, 4px 4px 0 0 #fff;
+  transition: all 0.2s ease-in;
 }
 
 .mainBlockStyle:hover,
@@ -11,18 +11,18 @@ input {
 .mainBlockStyle:active,
 input:active,
 input:focus {
-	cursor: pointer;
-	color: #fff;
-	box-shadow: none;
-	background-color: #000;
-	transition: all 0.2s ease-in;
+  cursor: pointer;
+  color: #fff;
+  box-shadow: none;
+  background-color: #000;
+  transition: all 0.2s ease-in;
 }
 
 .centering {
   height: 40px;
 }
 
-.error{
+.error {
   box-shadow: none;
   background-color: #fc3939;
 }

@@ -1,19 +1,29 @@
 <template>
   <div class="container">
     <label :for="title.dataName">{{ title.name }}<sup v-if="isRequired">*</sup></label>
-    <select name="" :id="title.dataName" class="mainBlockStyle" :multiple="isMultiple" v-model="inputValue.value" @change="getData">
+    <select
+        name="" :id="title.dataName" class="mainBlockStyle" :multiple="isMultiple" v-model="inputValue.value"
+        @change="getData"
+    >
       <option v-for="(w, index) of options" :key="index" :value="w.option">{{ w.option }}</option>
     </select>
-    <slot name="error"></slot>
+    <InfoMessage message="Обязательное поле" v-if="isDirtyField()" />
   </div>
 </template>
 
 <script>
 import getData from '@/mixins/getData';
+import {validationMixin} from 'vuelidate';
+import {required} from 'vuelidate/lib/validators';
+import InfoMessage from '@/components/UI/InfoMessage';
+
 export default {
   name: 'Select',
   props: ['title', 'options', 'isMultiple', 'isRequired'],
-  mixins: [getData],
+  mixins: [getData, validationMixin],
+  components: {
+    InfoMessage,
+  },
   data() {
     return {
       inputValue: {
@@ -22,21 +32,32 @@ export default {
       },
     };
   },
+  methods: {
+    isDirtyField() {
+      return this.$v.inputValue.value.$invalid && !this.$v.inputValue.value.required && this.isRequired;
+    },
+  },
+  validations: {
+    inputValue: {
+      value: {required},
+    },
+  },
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss">
 @import '../../assets/mainUiStyle';
 
 
 .container {
   box-sizing: content-box;
 
-  .mainBlockStyle{
+  .mainBlockStyle {
     background: #fff;
+
     &:hover,
     &:active,
-    &:focus{
+    &:focus {
       color: #000;
     }
   }
@@ -64,7 +85,7 @@ export default {
 
 @media (max-width: 768px) {
   .container {
-    select{
+    select {
       width: 70%;
     }
   }
@@ -72,7 +93,7 @@ export default {
 
 @media (max-width: 480px) and (min-width: 320px) {
   .container {
-    select{
+    select {
       width: 100%;
     }
   }

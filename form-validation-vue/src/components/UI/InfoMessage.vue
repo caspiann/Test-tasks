@@ -1,12 +1,12 @@
 <template>
-  <p :class="isSuccess ? 'success' : ''">{{message}}</p>
+  <p :class="isSuccess ? 'success' : ''">{{ message }}</p>
 </template>
 
 <script>
 export default {
   name: 'Error',
-  props:['message', 'isSuccess']
-}
+  props: ['message', 'isSuccess'],
+};
 </script>
 
 <style lang="scss" scoped>
@@ -20,7 +20,7 @@ p {
   text-align: left;
 }
 
-.success{
+.success {
   color: #029100;
 
 }
