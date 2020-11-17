@@ -3,7 +3,7 @@
     <label :for="title.dataName">{{ title.name }}<sup v-if="isRequired">*</sup></label>
     <select
         name="" :id="title.dataName" class="mainBlockStyle" :multiple="isMultiple" v-model="inputValue.value"
-        @change="getData"
+        @change="getData; touchSelect();"
     >
       <option v-for="(w, index) of options" :key="index" :value="w.option">{{ w.option }}</option>
     </select>
@@ -13,14 +13,13 @@
 
 <script>
 import getData from '@/mixins/getData';
-import {validationMixin} from 'vuelidate';
-import {required} from 'vuelidate/lib/validators';
 import InfoMessage from '@/components/UI/InfoMessage';
+import validationSelect from '@/mixins/validationSelect';
 
 export default {
   name: 'Select',
   props: ['title', 'options', 'isMultiple', 'isRequired'],
-  mixins: [getData, validationMixin],
+  mixins: [getData, validationSelect],
   components: {
     InfoMessage,
   },
@@ -31,16 +30,6 @@ export default {
         dataValue: this.title.dataName,
       },
     };
-  },
-  methods: {
-    isDirtyField() {
-      return this.$v.inputValue.value.$invalid && !this.$v.inputValue.value.required && this.isRequired;
-    },
-  },
-  validations: {
-    inputValue: {
-      value: {required},
-    },
   },
 };
 </script>

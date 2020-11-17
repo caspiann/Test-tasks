@@ -55,19 +55,18 @@
             is-multiple="true"
             is-required="true"
             @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </Select>
+        />
+
         <Select
             :title="{name:'Лечащий врач', dataName:'doctor'}"
             :options="[{option: 'Иванов'}, {option: 'Захаров'}, {option:'Чернышева'}]"
             @_set="Value"
         />
+
         <Checkbox
             :title="{name:'Не отправлять СМС', dataName:'notSendSMS'}" @_set="Value"
         />
+
       </fieldset>
 
       <fieldset>
@@ -118,11 +117,7 @@
             :options="[{option: 'Паспорт'}, {option: 'Свидетельство о рождении'}, {option:'Вод. удостоверение'}]"
             is-required="true"
             @_set="Value"
-        >
-          <template #error>
-            <InfoMessage message="Обязательное поле" />
-          </template>
-        </Select>
+        />
 
         <InputElement
             :title="{name:'Серия', dataName:'serialNumber'}"
