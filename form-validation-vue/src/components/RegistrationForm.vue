@@ -264,6 +264,10 @@ export default {
     legend {
       text-align: center;
     }
+
+    input[type=date]{
+      width: 100%;
+    }
   }
 }
 

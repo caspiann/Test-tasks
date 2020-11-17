@@ -25,7 +25,18 @@ export default {
   margin-top: 30px;
   font-size: 20px;
   font-weight: 700;
-
 }
+
+.mainBlockStyle:focus,
+.mainBlockStyle:hover {
+  background: #fff;
+}
+
+.mainBlockStyle:active{
+  background: #6c6c6c;
+  color: #fff;
+}
+
+
 
 </style>
